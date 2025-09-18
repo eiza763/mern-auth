@@ -186,7 +186,7 @@ export const logout = async function(req, res) {
   }
 }
 
-export const sendVerifyOtp = async (req, res) => {
+export const sendverifyOtp = async (req, res) => {
   try {
     const { userId } = req.body;
     const user = await userModel.findById(userId);

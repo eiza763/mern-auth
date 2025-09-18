@@ -1,13 +1,15 @@
 
-// import mongoose from "mongoose";
+ import mongoose from "mongoose";
 
-// async function connectDB() {
-//   mongoose.connection.on("connected", () => console.log("Database connected!"));
-//   await mongoose.connect(`${process.env.MONGODB_URL}/mern-auth`);
-// }
-// export default connectDB;
+async function connectDB() {
+  mongoose.connection.on("connected", () => console.log("Database connected!"));
+  await mongoose.connect(process.env.MONGODB_URL);
+}
+
+export default connectDB;
+
  //Fixed Database Connection File (db.js or config/database.js)
-import mongoose from "mongoose";
+{/*import mongoose from "mongoose";
 
 async function connectDB() {
   try {
@@ -25,4 +27,4 @@ async function connectDB() {
   }
 }
 
-export default connectDB;
+export default connectDB;*/}
