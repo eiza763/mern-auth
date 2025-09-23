@@ -12,7 +12,7 @@ const port = process.env.PORT || 8000;
 
 // Connect database
 connectDB();
-const allowedOrigins = ['http://localhost:5173']
+const allowedOrigins =["https://mern-auth-two-gold.vercel.app"]
 
 
 // Middleware
