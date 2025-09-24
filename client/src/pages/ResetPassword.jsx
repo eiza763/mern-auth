@@ -68,7 +68,7 @@ function ResetPassword() {
         backendUrl + "/api/auth/reset-password",
         {
           email,
-          OTP,
+          otp,
           newPassword,
         }
       );
