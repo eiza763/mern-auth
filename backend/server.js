@@ -18,7 +18,7 @@ const allowedOrigins =["https://mern-auth-two-gold.vercel.app/"]
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:allowedOrigins, credentials: true }));
+app.use(cors({origin:allowedOrigins,  methods:["POST", "GET", "PUT", "CREATE"],credentials: true }));
 
 // Test route
 app.get("/", (req, res) => {
