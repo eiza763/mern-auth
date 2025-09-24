@@ -17,7 +17,7 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin:allowedOrigins, credentials: true }));
+app.use(cors({origin: ["https://mern-auth-frontend-red-nine.vercel.app/"], methods:["GET","CREATE", "POST","PUT"], credentials: true }));
 
 // Test route
 app.get("/", (req, res) => {
