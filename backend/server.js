@@ -17,7 +17,7 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin : ["https://mern-auth-two-gold.vercel.app"], methods:["POST", "GET", "PUT", "CREATE"],credentials: true }));
+app.use(cors({origin:allowedOrigins, credentials: true }));
 
 // Test route
 app.get("/", (req, res) => {
