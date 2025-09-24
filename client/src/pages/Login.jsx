@@ -14,7 +14,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { backendUrl, setIsloggedIn, getUserData } = useContext(AppContext);
+  const { backendUrl, setIsLoggedIn, getUserData } = useContext(AppContext);
 
   async function handleSubmit(e) {
     axios.defaults.withCredentials = true;
@@ -30,7 +30,7 @@ function Login() {
         });
         if (data.success) {
           toast.success("Account has been created!");
-          setIsloggedIn(true);
+          setIsLoggedIn(true);
           setIsLoading(false);
           getUserData();
           navigate("/");
@@ -46,7 +46,7 @@ function Login() {
         });
         if (data.success) {
           toast.success("Logged In successfully!");
-          setIsloggedIn(true);
+          setIsLoggedIn(true);
           setIsLoading(false);
           getUserData();
           navigate("/");
