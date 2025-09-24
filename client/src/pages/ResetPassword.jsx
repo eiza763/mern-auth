@@ -14,7 +14,7 @@ function ResetPassword() {
   const [newPassword, setNewPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [isEmailSent, setIsEmailSent] = useState(false);
-  const [OTP, setOtp] = useState(0);
+  const [otp, setOtp] = useState(0);
   const [isOtpSubmitted, setIsOtpSubmitted] = useState(false);
   const navigate = useNavigate();
   const inputRefs = useRef([]);
