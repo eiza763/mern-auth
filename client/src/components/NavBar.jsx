@@ -1,19 +1,17 @@
-
-import React from 'react'
-import assets from '../assets/assets'
+import React, { useContext, useState } from "react";
+import assets from "../assets/assets";
 import { AppContext } from "../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { useContext } from "react";
-function NavBar() {
+
+const NavBar = () => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false)
-  const NavBar = () => {
-    const navigate = useNavigate();
-    const { userData, setIsloggedIn, backendUrl, setUserData } =
+  const { userData, setIsloggedIn, backendUrl, setUserData } =
     useContext(AppContext);
-    async function sendVerificationOtp() {
+  const [isLoading, setIsLoading] = useState(false);
+
+  async function sendVerificationOtp() {
     try {
       setIsLoading(true);
       axios.defaults.withCredentials = true;
@@ -33,14 +31,16 @@ function NavBar() {
       toast.error(err.message);
     }
   }
-  
+
   async function Logout() {
     try {
       axios.defaults.withCredentials = true;
       const { data } = await axios.post(backendUrl + "/api/auth/logout");
-      data.success && setIsloggedIn(false);
-      data.success && setUserData(false);
-      navigate("/");
+      if (data.success) {
+        setIsloggedIn(false);
+        setUserData(false);
+        navigate("/");
+      }
     } catch (err) {
       toast.error(err.message);
     }
@@ -48,7 +48,7 @@ function NavBar() {
 
   return (
     <div className="flex w-full justify-between items-center p-4 sm:p-6 sm:px-24 absolute top-0">
-      <img src={assets.logo} alt="" className="w-28 sm:w-32" />
+      <img src={assets.logo} alt="logo" className="w-28 sm:w-32" />
       {userData ? (
         <div className="w-8 h-8 flex justify-center items-center rounded-full bg-black text-white relative group">
           {userData.name[0].toUpperCase()}
@@ -62,7 +62,6 @@ function NavBar() {
                   {isLoading ? "Wait..." : "Verify Email"}
                 </li>
               )}
-
               <li
                 onClick={Logout}
                 className="py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10"
@@ -82,9 +81,7 @@ function NavBar() {
       )}
     </div>
   );
-}
-    
-  
+};
 
+export default NavBar;
 
-export default NavBar
