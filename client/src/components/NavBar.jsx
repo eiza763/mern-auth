@@ -7,7 +7,7 @@ import axios from "axios";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { userData, setIsloggedIn, backendUrl, setUserData } =
+  const { userData, setIsLoggedIn, backendUrl, setUserData } =
     useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -37,7 +37,7 @@ const NavBar = () => {
       axios.defaults.withCredentials = true;
       const { data } = await axios.post(backendUrl + "/api/auth/logout");
       if (data.success) {
-        setIsloggedIn(false);
+        setIsLoggedIn(false);
         setUserData(false);
         navigate("/");
       }
