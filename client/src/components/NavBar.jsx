@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { useContext } from "react";
-
-
-const NavBar = () => {
+function NavBar() {
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false)
+  const NavBar = () => {
     const navigate = useNavigate();
     const { userData, setIsloggedIn, backendUrl, setUserData } =
     useContext(AppContext);
