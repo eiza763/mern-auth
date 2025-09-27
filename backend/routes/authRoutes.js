@@ -21,6 +21,8 @@ authRouter.post("/verify-account", userAuth, verifyEmail);
 authRouter.get("/is-auth", userAuth, isAuthenticated);
 authRouter.post("/send-reset-otp", sendResetOtp);
 authRouter.post("/reset-password", resetPassword);
+authRouter.post("/verify-email", userAuth, verifyEmail);
+
 export default authRouter;
 {
   /*import express from "express";
@@ -42,7 +44,6 @@ authRouter.post("/login", login);
 // Protected routes
 authRouter.post("/logout", userAuth, logout);
 authRouter.post("/send-verify-otp", userAuth, sendVerifyOtp);
-authRouter.post("/verify-email", userAuth, verifyEmail);
 
 export default authRouter;*/
 }

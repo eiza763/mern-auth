@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useContext, useState } from "react";
-import assets  from "../assets/assets";
+import assets from "../assets/assets";
 import { useNavigate } from "react-router-dom";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
@@ -14,7 +14,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
-  const { backendUrl, setIsLoggedIn, getUserData } = useContext(AppContext);
+  const { setIsLoggedIn, getUserData } = useContext(AppContext);
 
   async function handleSubmit(e) {
     axios.defaults.withCredentials = true;
@@ -23,11 +23,14 @@ function Login() {
 
       if (state === "Sign Up") {
         setIsLoading(true);
-        const { data } = await axios.post(backendUrl + "/api/auth/register", {
-          name,
-          email,
-          password,
-        });
+        const { data } = await axios.post(
+          import.meta.env.VITE_BACKEND_URL + "/api/auth/register",
+          {
+            name,
+            email,
+            password,
+          }
+        );
         if (data.success) {
           toast.success("Account has been created!");
           setIsLoggedIn(true);
@@ -40,10 +43,13 @@ function Login() {
         }
       } else {
         setIsLoading(true);
-        const { data } = await axios.post(backendUrl + "/api/auth/login", {
-          email,
-          password,
-        });
+        const { data } = await axios.post(
+          import.meta.env.VITE_BACKEND_URL + "/api/auth/login",
+          {
+            email,
+            password,
+          }
+        );
         if (data.success) {
           toast.success("Logged In successfully!");
           setIsLoggedIn(true);
