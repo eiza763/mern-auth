@@ -64,7 +64,7 @@ function EmailVerify() {
   }
   useEffect(
     function () {
-      isLoggedIn && userData && userData.isAccountVerified && navigate("/");
+      isloggedIn && userDataa && userDataa.isAccountVerified && navigate("/");
     },
     [userData, isLoggedIn]
   );
