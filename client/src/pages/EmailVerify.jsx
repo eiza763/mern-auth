@@ -1,5 +1,6 @@
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import  assets from "../assets/assets";
+import assets from "../assets/assets";
 import { useContext, useEffect, useRef } from "react";
 import { toast } from "react-toastify";
 import { AppContext } from "../context/AppContext";
@@ -9,8 +10,7 @@ import { useState } from "react";
 function EmailVerify() {
   const inputRefs = useRef([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { backendUrl, isLoggedIn, userData, getUserData } =
-    useContext(AppContext);
+  const { isLoggedIn, userData, getUserData } = useContext(AppContext);
   const navigate = useNavigate();
 
   axios.defaults.withCredentials = true;
@@ -42,7 +42,7 @@ function EmailVerify() {
       setIsLoading(true);
 
       const { data } = await axios.post(
-        backendUrl + "/api/auth/verify-email",
+        import.meta.env.VITE_BACKEND_URL + "/api/auth/verify-email",
         {},
         {
           headers: { "x-otp": OTP, "Content-Type": "application/json" },
@@ -64,7 +64,7 @@ function EmailVerify() {
   }
   useEffect(
     function () {
-      isloggedIn && userDataa && userDataa.isAccountVerified && navigate("/");
+      isLoggedIn && userData && userData.isAccountVerified && navigate("/");
     },
     [userData, isLoggedIn]
   );

@@ -5,8 +5,6 @@ import axios from "axios";
 export const AppContext = createContext();
 
 export function AppContextProvider({ children }) {
-   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-  //const backendUrl = import.meta.env.VITE_BACKEND_URL || "http://localhost:8000";
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userData, setUserData] = useState(null);
 
@@ -14,7 +12,9 @@ export function AppContextProvider({ children }) {
 
   async function getUserData() {
     try {
-      const { data } = await axios.get(backendUrl + "/api/user/data");
+      const { data } = await axios.get(
+        import.meta.env.VITE_BACKEND_URL + "/api/user/data"
+      );
       data.success ? setUserData(data.userData) : toast.error(data.message);
     } catch (err) {
       toast.error(err.message);
@@ -23,7 +23,9 @@ export function AppContextProvider({ children }) {
 
   async function getAuthState() {
     try {
-      const { data } = await axios.get(backendUrl + "/api/auth/is-auth");
+      const { data } = await axios.get(
+        import.meta.env.VITE_BACKEND_URL + "/api/auth/is-auth"
+      );
       if (data.success) {
         setIsLoggedIn(true);
         getUserData();
@@ -40,7 +42,6 @@ export function AppContextProvider({ children }) {
   return (
     <AppContext.Provider
       value={{
-        backendUrl,
         isLoggedIn,
         setIsLoggedIn,
         userData,

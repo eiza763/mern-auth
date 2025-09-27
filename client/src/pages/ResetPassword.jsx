@@ -1,14 +1,13 @@
 import React from "react";
 
 import { useNavigate } from "react-router-dom";
-import  assets  from "../assets/assets";
-import { useContext, useRef, useState } from "react";
+import assets from "../assets/assets";
+import { useRef, useState } from "react";
 import { AppContext } from "../context/AppContext";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 function ResetPassword() {
-  const { backendUrl } = useContext(AppContext);
   axios.defaults.withCredentials = true;
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -43,7 +42,7 @@ function ResetPassword() {
     try {
       setIsLoading(true);
       const { data } = await axios.post(
-        backendUrl + "/api/auth/send-reset-otp",
+        import.meta.env.VITE_BACKEND_URL + "/api/auth/send-reset-otp",
         { email }
       );
       data.success ? toast.success(data.message) : toast.error(data.message);
@@ -65,7 +64,7 @@ function ResetPassword() {
     try {
       setIsLoading(true);
       const { data } = await axios.post(
-        backendUrl + "/api/auth/reset-password",
+        import.meta.env.VITE_BACKEND_URL + "/api/auth/reset-password",
         {
           email,
           otp,
