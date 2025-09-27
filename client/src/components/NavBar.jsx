@@ -7,8 +7,7 @@ import axios from "axios";
 
 const NavBar = () => {
   const navigate = useNavigate();
-  const { userData, setIsLoggedIn, backendUrl, setUserData } =
-    useContext(AppContext);
+  const { userData, setIsLoggedIn, setUserData } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState(false);
 
   async function sendVerificationOtp() {
@@ -16,7 +15,7 @@ const NavBar = () => {
       setIsLoading(true);
       axios.defaults.withCredentials = true;
       const { data } = await axios.post(
-        backendUrl + "/api/auth/send-verify-otp"
+        import.meta.env.VITE_BACKEND_URL + "/api/auth/send-verify-otp"
       );
       if (data.success) {
         setIsLoading(false);
@@ -35,7 +34,9 @@ const NavBar = () => {
   async function Logout() {
     try {
       axios.defaults.withCredentials = true;
-      const { data } = await axios.post(backendUrl + "/api/auth/logout");
+      const { data } = await axios.post(
+        import.meta.env.VITE_BACKEND_URL + "/api/auth/logout"
+      );
       if (data.success) {
         setIsLoggedIn(false);
         setUserData(false);
@@ -81,9 +82,6 @@ const NavBar = () => {
       )}
     </div>
   );
-}
-    
-  
+};
 
-
-export default NavBar
+export default NavBar;

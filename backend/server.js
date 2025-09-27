@@ -16,15 +16,13 @@ connectDB();
 // Middleware
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({origin: ["https://mern-auth-frontend-red-nine.vercel.app"], methods:["GET","CREATE", "POST","PUT"], credentials: true }));
-
-//app.use(cors({origin: ["http://localhost:5173"], methods:["GET","CREATE", "POST","PUT"], credentials: true }));
-
-app.use(cors({
-  origin: "https://mern-auth-frontend-red-nine.vercel.app", 
-  methods: ["GET", "POST", "PUT", "DELETE"], 
-  credentials: true // allow cookies/headers
-}));
+app.use(
+  cors({
+    origin: process.env.ORIGIN,
+    methods: ["GET", "DELETE", "POST", "PUT"],
+    credentials: true,
+  })
+);
 
 // Test route
 app.get("/", (req, res) => {
