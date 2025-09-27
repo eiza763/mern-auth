@@ -9,7 +9,7 @@ import { useState } from "react";
 function EmailVerify() {
   const inputRefs = useRef([]);
   const [isLoading, setIsLoading] = useState(false);
-  const { backendUrl, isloggedIn, userDataa, getUserData } =
+  const { backendUrl, isLoggedIn, userData, getUserData } =
     useContext(AppContext);
   const navigate = useNavigate();
 
@@ -64,9 +64,9 @@ function EmailVerify() {
   }
   useEffect(
     function () {
-      isloggedIn && userDataa && userDataa.isAccountVerified && navigate("/");
+      isLoggedIn && userData && userData.isAccountVerified && navigate("/");
     },
-    [userDataa, isloggedIn]
+    [userData, isLoggedIn]
   );
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-200 to-purple-400">

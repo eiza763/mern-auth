@@ -166,21 +166,6 @@ export const login = async function (req, res) {
     res.json({ success: false, message: err.message });
   }
 };
-{
-  /*const emailOptions = {
-      from: process.env.SENDER_EMAIL,
-      to: email,
-      subject: "Login Notification - eiza's Website",
-      text: `Hello ${user.name}, you have successfully logged into your account on ${new Date().toLocaleString()}`,
-    };
-    
-    await transporter.sendMail(emailOptions);
-    
-    return res.json({ success: true, message: "Logged In Successfully!" });
-  } catch (err) {
-    res.json({ success: false, message: err.message });
-}*/
-}
 
 export const logout = async function (req, res) {
   try {
