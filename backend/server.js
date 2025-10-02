@@ -18,8 +18,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-
-    origin: process.env.ORIGIN,
+    ["https://mern-auth-eiza.vercel.app/"],
     methods: ["POST", "PUT", "GET", "DELETE", "CREATE"],
     credentials: true,
   })
