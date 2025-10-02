@@ -94,7 +94,6 @@ import {
   PASSWORD_RESET_TEMPLATE,
 } from "../config/emailTemplate.js";
 
-
 export const register = async function (req, res) {
   const { email, password, name } = req.body;
   if (!email || !name || !password)
@@ -136,7 +135,7 @@ export const register = async function (req, res) {
 
 export const login = async function (req, res) {
   const { email, password } = req.body;
-  console.log(email, password)
+  console.log(email, password);
   if (!email || !password)
     return res.json({
       success: false,
@@ -192,18 +191,16 @@ export const sendVerifyOtp = async (req, res) => {
     user.verifyotpExpireAt = Date.now() + 24 * 60 * 60 * 1000;
 
     await user.save();
-    console.log(OTP,user)
 
     const emailOptions = {
       from: process.env.SENDER_EMAIL,
       to: user.email,
       subject: "Account Verification OTP",
       text: `Your OTP for account verification is ${OTP}. It is valid for 24 hours.`,
-       html: EMAIL_VERIFY_TEMPLATE.replace("{{otp}}", OTP).replace(
+      html: EMAIL_VERIFY_TEMPLATE.replace("{{otp}}", OTP).replace(
         "{{email}}",
         user.email
       ),
-    
     };
     await transporter.sendMail(emailOptions);
 
@@ -225,8 +222,10 @@ export const verifyEmail = async (req, res) => {
     return res.json({ success: false, message: "Missing Details." });
   try {
     const user = await userModel.findById(userId);
-    console.log(user.verifyotp,OTP);
+    console.log(user.verifyotp, OTP);
     if (!user) return res.json({ success: false, message: "User not found" });
+    console.log(user.verifyotp, OTP);
+
     if (user.verifyotp === "" || user.verifyotp !== OTP)
       return res.json({ success: false, message: "Invalid OTP" });
     if (user.verifyotpExpireAt < Date.now())
@@ -245,7 +244,7 @@ export const verifyEmail = async (req, res) => {
   }
 };
 
- export const isAuthenticated = async (req, res) => {
+export const isAuthenticated = async (req, res) => {
   try {
     return res.json({ success: true });
   } catch (err) {
@@ -274,8 +273,8 @@ export const sendResetOtp = async (req, res) => {
         user.email
       ),
     };
-      //text: `Your OTP for resetting your password is ${OTP}. It is valid for 15 minutes.`,
-    
+    //text: `Your OTP for resetting your password is ${OTP}. It is valid for 15 minutes.`,
+
     await transporter.sendMail(emailOptions);
 
     return res.json({
